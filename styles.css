@@ -1,0 +1,81 @@
+body {
+    font-family: 'Comic Sans MS', cursive; /* Trocando a fonte para Comic Sans MS */
+    background-color: #ffdde1; /* Background mais rosado */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Evita que os corações apareçam fora da tela */
+    position: relative; /* Adicionado para posicionar elementos filhos relativamente */
+}
+
+.background-heart {
+    position: relative;
+    width: 700px; /* Aumentando um pouco a largura do coração estático */
+    height: 700px; /* Aumentando um pouco a altura do coração estático */
+    z-index: 1; /* Garante que o coração estático esteja na frente dos corações em movimento */
+    top: 50px; /* Descendo o coração um pouco */
+}
+
+.background-heart::before,
+.background-heart::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 350px; /* Aumentando um pouco a largura das partes superiores do coração */
+    height: 560px; /* Aumentando um pouco a altura das partes superiores do coração */
+    border-radius: 175px 175px 0 0; /* Usando metade da largura e altura para formar um círculo perfeito */
+    background: #ff4757; /* Tom de vermelho forte */
+}
+
+.background-heart::before {
+    left: 350px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.background-heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.message-container {
+    position: absolute;
+    top: 33%; /* Subindo a mensagem um pouco mais */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #000; /* Cor do texto em preto */
+    font-size: 18px; /* Reduzindo um pouco o tamanho da fonte */
+    font-weight: bold; /* Deixando o texto em negrito */
+    letter-spacing: 1px; /* Adicionando um leve espaçamento entre as letras */
+    z-index: 2; /* Garante que a mensagem esteja na frente do coração estático */
+    width: 70%; /* Ajustando a largura da mensagem para que fique completamente dentro do coração */
+}
+
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    display: block;
+    width: 180px; /* Triplicando a largura do coração em movimento */
+    height: 180px; /* Triplicando a altura do coração em movimento */
+    font-size: 162px; /* Triplicando o tamanho da fonte para exibir o coração em movimento */
+    color: #ff4757; /* Coração vermelho */
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh); /* Faz o coração em movimento cair até o final da tela */
+    }
+}
